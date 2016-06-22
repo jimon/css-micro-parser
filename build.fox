@@ -1,0 +1,3 @@
+includedirs += . css-layout
+build objects(build/*): auto *.c
+build application(build/test): auto objects(build/*)
