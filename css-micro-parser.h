@@ -165,6 +165,25 @@ css_style_t css_parse(const char * style)
 				{"hidden",			CSS_OVERFLOW_HIDDEN},
 				{NULL,				CSS_OVERFLOW_VISIBLE}
 			}
+		},
+		{
+			"text-align", &r.text_halign, sizeof(r.text_halign),
+			{
+				{"left",			MATGL_ALIGN_LEFT},
+				{"center",			MATGL_ALIGN_CENTER},
+				{"right",			MATGL_ALIGN_RIGHT},
+				{NULL,				MATGL_ALIGN_LEFT}
+			}
+		},
+		{
+			"text-valign", &r.text_valign, sizeof(r.text_valign),
+			{
+				{"top",				MATGL_ALIGN_TOP},
+				{"middle",			MATGL_ALIGN_MIDDLE},
+				{"bottom",			MATGL_ALIGN_BOTTOM},
+				{"baseline",		MATGL_ALIGN_BASELINE},
+				{NULL,				MATGL_ALIGN_BASELINE}
+			}
 		}
 	};
 	size_t param_count = sizeof(params) / sizeof(param_t);
@@ -260,21 +279,23 @@ css_style_t css_parse(const char * style)
 				}
 			}
 
-			if(!strcmp(field, "flex"))				r.flex = num_value[0];
-			else if(!strcmp(field, "margin"))		css_parse_shuffle6(num_value, r.margin, count);
-			else if(!strcmp(field, "padding"))		css_parse_shuffle6(num_value, r.padding, count);
-			else if(!strcmp(field, "border"))		css_parse_shuffle6(num_value, r.border, count);
-			else if(!strcmp(field, "border-radius"))r.border_radius = num_value[0]; // if you have it :)
-			else if(!strcmp(field, "top"))			r.position[CSS_TOP] = num_value[0];
-			else if(!strcmp(field, "bottom"))		r.position[CSS_BOTTOM] = num_value[0];
-			else if(!strcmp(field, "left"))			r.position[CSS_LEFT] = num_value[0];
-			else if(!strcmp(field, "right"))		r.position[CSS_RIGHT] = num_value[0];
-			else if(!strcmp(field, "width"))		r.dimensions[CSS_WIDTH] = num_value[0];
-			else if(!strcmp(field, "height"))		r.dimensions[CSS_HEIGHT] = num_value[0];
-			else if(!strcmp(field, "max-width"))	r.maxDimensions[CSS_WIDTH] = num_value[0];
-			else if(!strcmp(field, "max-height"))	r.maxDimensions[CSS_HEIGHT] = num_value[0];
-			else if(!strcmp(field, "min-width"))	r.minDimensions[CSS_WIDTH] = num_value[0];
-			else if(!strcmp(field, "min-height"))	r.minDimensions[CSS_HEIGHT] = num_value[0];
+			if(!strcmp(field, "flex"))					r.flex = num_value[0];
+			else if(!strcmp(field, "margin"))			css_parse_shuffle6(num_value, r.margin, count);
+			else if(!strcmp(field, "padding"))			css_parse_shuffle6(num_value, r.padding, count);
+			else if(!strcmp(field, "border"))			css_parse_shuffle6(num_value, r.border, count);
+			else if(!strcmp(field, "border-radius"))	r.border_radius = num_value[0]; // if you have it :)
+			else if(!strcmp(field, "top"))				r.position[CSS_TOP] = num_value[0];
+			else if(!strcmp(field, "bottom"))			r.position[CSS_BOTTOM] = num_value[0];
+			else if(!strcmp(field, "left"))				r.position[CSS_LEFT] = num_value[0];
+			else if(!strcmp(field, "right"))			r.position[CSS_RIGHT] = num_value[0];
+			else if(!strcmp(field, "width"))			r.dimensions[CSS_WIDTH] = num_value[0];
+			else if(!strcmp(field, "height"))			r.dimensions[CSS_HEIGHT] = num_value[0];
+			else if(!strcmp(field, "max-width"))		r.maxDimensions[CSS_WIDTH] = num_value[0];
+			else if(!strcmp(field, "max-height"))		r.maxDimensions[CSS_HEIGHT] = num_value[0];
+			else if(!strcmp(field, "min-width"))		r.minDimensions[CSS_WIDTH] = num_value[0];
+			else if(!strcmp(field, "min-height"))		r.minDimensions[CSS_HEIGHT] = num_value[0];
+			else if(!strcmp(field, "letter-spacing"))	r.text_line_spacing = num_value[0];
+			else if(!strcmp(field, "font-size"))		r.text_font_size = num_value[0];
 			else
 			{
 				printf("unknown css style field '%s'\n", field);
