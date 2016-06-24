@@ -1,3 +1,4 @@
+/*
 #include <css-micro-parser.h>
 
 int main()
@@ -7,3 +8,4 @@ int main()
 	assert(style.align_self == CSS_ALIGN_CENTER);
 	return 0;
 }
+*/
