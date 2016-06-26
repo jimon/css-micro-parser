@@ -25,7 +25,10 @@ void css_parse_shuffle6(float * values, float * new_values, uint8_t count)
 	if(count == 0)
 		return;
 	else if(count == 1)
+	{
 		new_values[CSS_LEFT] = new_values[CSS_RIGHT] = new_values[CSS_BOTTOM] = new_values[CSS_TOP] = values[0];
+		new_values[CSS_START] = new_values[CSS_END] = values[0];
+	}
 	else if(count == 2)
 	{
 		new_values[CSS_BOTTOM] = new_values[CSS_TOP] = values[0];
